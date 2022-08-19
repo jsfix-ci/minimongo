@@ -112,7 +112,7 @@ class Collection {
       this.cacheOne(doc)
     }
 
-    const docsMap = _.object(_.pluck(docs, "_id"), docs)
+    const docsMap = _.fromPairs(_.zip(_.map(docs, "_id"), docs))
 
     if (options.sort) {
       sort = compileSort(options.sort)
@@ -143,7 +143,7 @@ class Collection {
   }
 
   pendingRemoves(success: any) {
-    return success(_.pluck(this.removes, "_id"))
+    return success(_.map(this.removes, "_id"))
   }
 
   resolveUpsert(doc: any, success: any) {

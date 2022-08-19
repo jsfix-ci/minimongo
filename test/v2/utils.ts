@@ -195,7 +195,7 @@ function processNearOperator(selector: any, list: any) {
       distances = _.first(distances, 100)
 
       // Extract docs
-      list = _.pluck(distances, "doc")
+      list = _.map(distances, "doc")
     }
   }
   return list

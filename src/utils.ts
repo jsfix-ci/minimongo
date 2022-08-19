@@ -155,8 +155,8 @@ export function cloneLocalDb(
             // Copy upserts
             return fromCol.pendingUpserts((upserts: any) => {
               return toCol.upsert(
-                _.pluck(upserts, "doc"),
-                _.pluck(upserts, "base"),
+                _.map(upserts, "doc"),
+                _.map(upserts, "base"),
                 () => {
                   // Copy removes
                   return fromCol.pendingRemoves((removes: any) => {
@@ -210,8 +210,8 @@ export function cloneLocalCollection(
         // Copy upserts
         return fromCol.pendingUpserts((upserts: any) => {
           return toCol.upsert(
-            _.pluck(upserts, "doc"),
-            _.pluck(upserts, "base"),
+            _.map(upserts, "doc"),
+            _.map(upserts, "base"),
             () => {
               // Copy removes
               return fromCol.pendingRemoves((removes: any) => {
@@ -390,7 +390,7 @@ function processNearOperator(selector: any, list: any) {
       }
 
       // Extract docs
-      list = _.pluck(distances, "doc")
+      list = _.map(distances, "doc")
     }
   }
   return list
